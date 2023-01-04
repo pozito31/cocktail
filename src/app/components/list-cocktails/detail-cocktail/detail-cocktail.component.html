@@ -1,0 +1,82 @@
+<div class="row" id="detail" *ngIf="loadCocktail && cocktail">
+  <div class="col-12 text-center">
+    <div class="row">
+      <div class="col-12">
+        <h1>{{ cocktail.name }}</h1>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-12">
+        <img class="img-fluid" [src]="cocktail.img" />
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-12">
+        <h1>Instrucciones</h1>
+        <p>{{ cocktail.instructions }}</p>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-6" *ngIf="cocktail.numIngredients !== 0">
+        <h1>Ingredientes</h1>
+        <ul>
+          <li *ngFor="let ingredient of cocktail.ingredients">
+            {{ ingredient }}
+          </li>
+        </ul>
+      </div>
+
+      <div class="col-6" *ngIf="cocktail.numMeasures !== 0">
+        <h1>Measure</h1>
+        <ul>
+          <li *ngFor="let measure of cocktail.measures">
+            {{ measure }}
+          </li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="row mb-2">
+      <div class="col-12">
+        <button
+          type="button"
+          class="btn btn-block btn-primary"
+          [routerLink]="['/list-cocktails']"
+        >
+          Volver
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="row" *ngIf="loadCocktail && !cocktail">
+  <div class="col-12">
+    <div class="row">
+      <div class="col-12 text-center">
+        <p>No se ha encontrado ese cocktail.</p>
+      </div>
+    </div>
+
+    <div class="row mb-2">
+      <div class="col-12">
+        <button
+          type="button"
+          class="btn btn-block btn-primary"
+          [routerLink]="['/list-cocktails']"
+        >
+          Volver
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="h-100" *ngIf="!loadCocktail">
+  <div class="spinner">
+    <img src="assets/img/spinner.gif" />
+  </div>
+</div>
